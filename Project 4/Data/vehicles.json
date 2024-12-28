@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Car Model A",
+        "type": "Sedan",
+        "price": 20000,
+        "image": "car_a.jpg"
+    },
+    {
+        "name": "Truck Model B",
+        "type": "Truck",
+        "price": 35000,
+        "image": "truck_b.jpg"
+    }
+]
