@@ -1,24 +1,36 @@
 <?php
 namespace App\classes;
 
-use App\Traits\FileHandler;
-use App\Interfaces\VehicleActions;
-use App\Models\VehicleBase;
+require_once __DIR__ . '/FileHandler.php';
+require_once __DIR__ . '/VehicleBase.php';
 
-class VehicleManager extends VehicleBase implements VehicleActions {
+use App\classes\VehicleBase;
+use App\Traits\FileHandler;
+
+class VehicleManager extends VehicleBase {
     use FileHandler;
 
-    private $filePath = 'data/vehicles.json';
+    private $filePath = __DIR__ . '/../../data/vehicles.json';
 
-    public function addVehicle($vehicle) {
+    public function __construct() {
+        parent::__construct('', '', 0, ''); // Adjust constructor call as needed
+    }
+
+    public function getVehicles() {
+        // Read vehicles from the JSON file
+        $data = $this->readJson($this->filePath);
+        return $data ?: []; // Return an empty array if no data is found
+    }
+
+    public function addVehicle($data) {
         $vehicles = $this->getVehicles();
-        $vehicles[] = $vehicle;
+        $vehicles[] = $data;
         $this->writeJson($this->filePath, $vehicles);
     }
 
-    public function editVehicle($id, $vehicle) {
+    public function editVehicle($id, $data) {
         $vehicles = $this->getVehicles();
-        $vehicles[$id] = $vehicle;
+        $vehicles[$id] = $data;
         $this->writeJson($this->filePath, $vehicles);
     }
 
@@ -28,16 +40,12 @@ class VehicleManager extends VehicleBase implements VehicleActions {
         $this->writeJson($this->filePath, array_values($vehicles));
     }
 
-    public function getVehicles() {
-        return $this->readJson($this->filePath);
-    }
-
     public function getDetails() {
         return [
             'name' => $this->name,
             'type' => $this->type,
             'price' => $this->price,
-            'image' => $this->image
+            'image' => $this->image,
         ];
     }
 }
