@@ -2,13 +2,13 @@
     {
         "name": "Car Model A",
         "type": "Sedan",
-        "price": 20000,
-        "image": "car_a.jpg"
+        "price": "20000",
+        "image": "https:\/\/media.cdn-jaguarlandrover.com\/api\/v2\/images\/55880\/w\/680.jpg"
     },
     {
         "name": "Truck Model B",
         "type": "Truck",
-        "price": 35000,
-        "image": "truck_b.jpg"
+        "price": "35000",
+        "image": "https:\/\/heavyequipmentappraisal.com\/wp-content\/uploads\/2023\/02\/What-is-a-Straight-Truck-for-DOT-1024x578.jpg"
     }
 ]
