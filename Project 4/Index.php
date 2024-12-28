@@ -30,7 +30,7 @@ $vehicles = $vehicleManager->getVehicles();
                             <h5 class="card-title"><?php echo $vehicle['name']; ?></h5>
                             <p class="card-text"><?php echo $vehicle['type']; ?> - $<?php echo $vehicle['price']; ?></p>
                             <a href="view/edit.php?id=<?php echo $key; ?>" class="btn btn-primary">Edit</a>
-                            <a href="delete_vehicle.php?id=<?php echo $key; ?>" class="btn btn-danger">Delete</a>
+                            <a href="view/delete.php?id=<?php echo $key; ?>" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
