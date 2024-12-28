@@ -16,3 +16,4 @@ abstract class VehicleBase {
 
     abstract public function getDetails();
 }
+?>
