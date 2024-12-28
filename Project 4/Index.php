@@ -1,30 +1,46 @@
 <?php
-include './view/header.php';
+// Include necessary files where the logic for fetching vehicles is handled
+require_once 'App/classes/VehicleManager.php';  // Assuming VehicleManager class is autoloaded
+use App\classes\VehicleManager;
+$vehicleManager = new VehicleManager();
+$vehicles = $vehicleManager->getVehicles();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Listing</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-<div class="container my-4">
-    <h1>Vehicle Listing</h1>
-    <a href="./../public/views/add.php" class="btn btn-success mb-4">Add Vehicle</a>
-    <div class="row">
-        <!-- Loop Go here -->
-         
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5> 
-                         <p class="card-text">Type: </p>
-                        <p class="card-text">Price: $</p>
-                        <a href="./views/edit.php?id=" class="btn btn-primary">Edit</a>
-                        <a href="./views/delete.php?id=" class="btn btn-danger">Delete</a>
+    <?php include('./view/header.php'); ?> 
+
+    <div class="container mt-4">
+        <h2>Vehicle List</h2>
+        <div class="row">
+            <?php foreach ($vehicles as $key => $vehicle): ?>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <img src="assets/<?php echo $vehicle['image']; ?>" class="card-img-top" alt="<?php echo $vehicle['name']; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $vehicle['name']; ?></h5>
+                            <p class="card-text"><?php echo $vehicle['type']; ?> - $<?php echo $vehicle['price']; ?></p>
+                            <a href="edit_vehicle.php?id=<?php echo $key; ?>" class="btn btn-primary">Edit</a>
+                            <a href="delete_vehicle.php?id=<?php echo $key; ?>" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        <!-- Loop ends here -->
+            <?php endforeach; ?>
+        </div>
     </div>
-</div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
