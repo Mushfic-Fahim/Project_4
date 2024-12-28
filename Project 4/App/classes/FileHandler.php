@@ -1,16 +1,17 @@
 <?php
-namespace App\classes;
+namespace App\Traits;
 
-class FileHandler {
+trait FileHandler {
     public function readJson($filePath) {
-        if (file_exists($filePath)) {
-            $jsonContent = file_get_contents($filePath);
-            return json_decode($jsonContent, true);
+        if (!file_exists($filePath)) {
+            return [];
         }
-        return [];
+        $jsonContent = file_get_contents($filePath);
+        return json_decode($jsonContent, true) ?: [];
     }
 
     public function writeJson($filePath, $data) {
-        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+        $jsonContent = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents($filePath, $jsonContent);
     }
 }
