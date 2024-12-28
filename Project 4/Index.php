@@ -1,6 +1,6 @@
 <?php
-// Include necessary files where the logic for fetching vehicles is handled
-require_once 'App/classes/VehicleManager.php';  // Assuming VehicleManager class is autoloaded
+require_once 'App/classes/VehicleManager.php';  
+
 use App\classes\VehicleManager;
 $vehicleManager = new VehicleManager();
 $vehicles = $vehicleManager->getVehicles();
@@ -12,11 +12,12 @@ $vehicles = $vehicleManager->getVehicles();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Listing</title>
+    <!-- Include Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <?php include('./view/header.php'); ?> 
+    <?php include('./view/header.php'); ?> <!-- Include header from another file -->
 
     <div class="container mt-4">
         <h2>Vehicle List</h2>
@@ -28,7 +29,7 @@ $vehicles = $vehicleManager->getVehicles();
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $vehicle['name']; ?></h5>
                             <p class="card-text"><?php echo $vehicle['type']; ?> - $<?php echo $vehicle['price']; ?></p>
-                            <a href="edit_vehicle.php?id=<?php echo $key; ?>" class="btn btn-primary">Edit</a>
+                            <a href="view/edit.php?id=<?php echo $key; ?>" class="btn btn-primary">Edit</a>
                             <a href="delete_vehicle.php?id=<?php echo $key; ?>" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
